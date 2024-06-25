@@ -81,7 +81,7 @@ body {
   }
 }
 .latex-eqn-inside {
-  max-width: auto; /* Ensure LaTeX images do not exceed container width */
+  max-width:auto; /* Ensure LaTeX images do not exceed container width */
   height: auto; /* Maintain aspect ratio */
   display: block; /* Ensure they behave like block elements */
 }
@@ -98,7 +98,26 @@ body {
 .latex-chunk p {
   margin: 0;
 }
+.latex-equation-wrapper {
+  word-wrap: break-word; /* Allow words to break */
+  overflow-wrap: break-word; /* Compatibility for older browsers */
+  hyphens: auto; /* Enable hyphenation if supported */
+}
+.latex-equation-wrapper .span.mord{
+  display: inline-block;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 
+}
+
+.latex-small .katex-display {
+  font-size: 0.8em; /* Adjust this value to make the displayed equations smaller */
+  overflow: auto;
+}
+
+.latex-small .katex-display .base {
+  font-size: inherit; /* Ensure the font size for the base elements is inherited */
+}
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .container {
@@ -108,4 +127,5 @@ body {
   .latex-chunk {
     padding: 10px;
   }
+ 
 }

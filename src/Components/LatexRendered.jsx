@@ -68,8 +68,11 @@ export default function LatexRendered() {
       <h1>Response</h1>
       {chunks.map((item, index) => (
         <div key={index} className="latex-equation">
-          <div>
-            <span className='latex-eqn-inside'> <Latex>{item.chunk}</Latex></span>
+           <div className="latex-equation-wrapper">
+            <div className='latex-eqn-inside latex-small'> <Latex delimeters={[{left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}]}>{item.chunk}</Latex></div>
         </div>
         <br/>
         </div>
