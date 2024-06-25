@@ -1,14 +1,31 @@
 /* styles.css */
 
-.app-container {
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
   max-width: 800px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  background-color: #fff;
+  border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* App specific styles */
+.app-container {
   text-align: center;
+}
+
+.input-container {
+  margin-bottom: 20px;
 }
 
 .latex-container {
@@ -20,18 +37,75 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.latex-equation {
+  /* make the contents inside this class remain inside and prevent overflow */
+  max-width: 100%; /* Ensure LaTeX images do not exceed container width */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure they behave like block elements */
+  margin-top: 10px; /* Adjust as needed */
+  margin-bottom: 10px; /* Adjust as needed */
+  word-wrap: break-word; /* Ensure words and equations break */
+  overflow-wrap: break-word; /* Handle overflow with word wrap */
+}
+
+.latex-container {
+  max-width: 100%; /* Ensures the container doesn't exceed the viewport width */
+  padding: 20px; /* Adjust padding as per your design */
+}
+
+.latex-equation {
+  margin-bottom: 20px; /* Adds spacing between equations */
+  /* apply word break */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+}
+
+.latex-eqn-inside {
+  display: block; /* Ensures LaTeX equations render as block elements */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.latex-text {
+  display: block; /* Ensure plain text chunks also behave like block elements */
+}
+
+@media (max-width: 768px) {
+  .latex-eqn-inside {
+    word-break: break-word; /* Break equations into new lines on small screens */
+  }
+
+  .latex-text {
+    word-break: break-word; /* Ensure plain text chunks also break on small screens */
+  }
+}
+.latex-eqn-inside {
+  max-width: auto; /* Ensure LaTeX images do not exceed container width */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure they behave like block elements */
+}
 .latex-chunk {
   margin-bottom: 20px;
   padding: 15px;
   background-color: #f9f9f9;
   border: 1px solid #eee;
   border-radius: 4px;
+  word-wrap: break-word; /* Ensure words break */
+  overflow-wrap: break-word; /* Handle overflow with word wrap */
 }
 
 .latex-chunk p {
   margin: 0;
 }
 
-.latex-text {
-  white-space: pre-wrap;
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  .latex-chunk {
+    padding: 10px;
+  }
 }

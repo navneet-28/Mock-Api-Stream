@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
+import '../App.css'
 
 
 
@@ -39,10 +40,10 @@ export default function LatexRendered() {
 
     useEffect(() => {
       let chunkIndex = 0;
-      setChunks([data[chunkIndex]]);
+      setChunks([parseChunk(data[chunkIndex])]);
       const intervalId = setInterval(() => {
         if (chunkIndex < data.length-1) {
-          setChunks((prevChunks) => [...prevChunks, data[chunkIndex]]);
+          setChunks((prevChunks) => [...prevChunks, parseChunk(data[chunkIndex])]);
           chunkIndex++;
         } else {
           clearInterval(intervalId);
@@ -53,13 +54,18 @@ export default function LatexRendered() {
         clearInterval(intervalId);
       };
     }, [intervals]);
+
+    const parseChunk = (chunk) => {
+      const parsedChunk = chunk.chunk.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      return { ...chunk, chunk: parsedChunk };
+    };
   return (
     <div className="latex-container">
       <h1>Response</h1>
       {chunks.map((item, index) => (
-        <div key={index} className="latex-chunk">
+        <div key={index} className="latex-equation">
           <div>
-         {item.latex ? (<span><Latex>{item.chunk}</Latex> </span>) :(<span className="latex-text">{item.chunk}</span>) }
+         {item.latex ? (<span><Latex className="latex-eqn-inside">{item.chunk}</Latex> </span>) :(<span className="latex-text">{item.chunk}</span>) }
         </div>
         <br/>
         </div>
