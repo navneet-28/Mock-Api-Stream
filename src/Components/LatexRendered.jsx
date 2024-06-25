@@ -56,9 +56,12 @@ export default function LatexRendered() {
     }, [intervals]);
 
     const parseChunk = (chunk) => {
-      const parsedChunk = chunk.chunk.replace(/\n/g, '<br>');
-      const replacedNewLine = parsedChunk.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      return { ...chunk, chunk: replacedNewLine };
+      let parsedChunk = chunk.chunk.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+      // Replace \n with <br> for newline handling
+      parsedChunk = parsedChunk.replace(/\\n/g, '<br>');
+    
+      return { ...chunk, chunk: parsedChunk };
     };
   return (
     <div className="latex-container">
@@ -66,7 +69,7 @@ export default function LatexRendered() {
       {chunks.map((item, index) => (
         <div key={index} className="latex-equation">
           <div>
-         {item.latex ? (<span><Latex className="latex-eqn-inside">{item.chunk}</Latex> </span>) :(<span className="latex-text">{item.chunk}</span>) }
+            <span className='latex-eqn-inside'> <Latex>{item.chunk}</Latex></span>
         </div>
         <br/>
         </div>
