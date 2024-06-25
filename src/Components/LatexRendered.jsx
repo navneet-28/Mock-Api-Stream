@@ -56,8 +56,9 @@ export default function LatexRendered() {
     }, [intervals]);
 
     const parseChunk = (chunk) => {
-      const parsedChunk = chunk.chunk.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      return { ...chunk, chunk: parsedChunk };
+      const parsedChunk = chunk.chunk.replace(/\n/g, '<br>');
+      const replacedNewLine = parsedChunk.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      return { ...chunk, chunk: replacedNewLine };
     };
   return (
     <div className="latex-container">
